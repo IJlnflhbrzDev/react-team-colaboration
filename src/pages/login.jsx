@@ -1,12 +1,12 @@
 import { FormLogin } from "../components/Fragments/FormLogin";
 import AuthLayouts from "../components/Layouts/AuthLayouts";
 
-const Login = () => {
+const LoginPage = () => {
     return (
-<AuthLayouts title="Register">
+<AuthLayouts title="Login">
     <FormLogin />
 </AuthLayouts>
     );
 }
 
-export default Login;
+export default LoginPage;
