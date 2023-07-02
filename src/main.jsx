@@ -5,11 +5,14 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import ErrorPage from './pages/404';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element:  <div>Hello World Home Page</div>
+    element:  <div>Hello World Home Page</div>,
+    errorElement: <ErrorPage />
+    
   },
   {
     path: '/login',
