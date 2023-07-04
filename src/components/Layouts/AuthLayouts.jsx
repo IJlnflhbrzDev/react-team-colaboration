@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
@@ -12,7 +13,8 @@ const AuthLayouts = (props) => {
           Welcome, Please enter your details
         </p>
         {children}
-        <p className="text-sm mt-5 text-center">
+        <Navigation type={type} />
+        {/* <p className="text-sm mt-5 text-center">
           {type === "login"
             ? "Don`t have an account? "
             : "Already have an account? "}
@@ -26,10 +28,32 @@ const AuthLayouts = (props) => {
               Login
             </Link>
           )}
-        </p>
+        </p> */}
       </div>
     </div>
   );
 };
 
+const Navigation = ({ type }) => {
+  if (type === "login") {
+    return (
+      <p className="text-sm mt-5 text-center">
+        Don`t have an account?{" "}
+        <Link to={"/register"} className="font-bold text-blue-600">
+          Register
+        </Link>
+      </p>
+    );
+    
+  }else{
+    return (
+      <p className="text-sm mt-5 text-center">
+      Already have an account?{" "}
+      <Link to={"/login"} className="font-bold text-blue-600">
+        Login
+      </Link>
+    </p>
+    )
+  }
+};
 export default AuthLayouts;
