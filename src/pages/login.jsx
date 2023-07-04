@@ -3,7 +3,7 @@ import AuthLayouts from "../components/Layouts/AuthLayouts";
 
 const LoginPage = () => {
     return (
-<AuthLayouts title="Login">
+<AuthLayouts title="Login" type="login">
     <FormLogin />
 </AuthLayouts>
     );
