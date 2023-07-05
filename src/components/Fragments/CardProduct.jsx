@@ -5,7 +5,7 @@ import Button from "../Elements/Button/button";
 
 const CardProduct = ({ children }) => {
   return (
-    <div className="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow">
+    <div className="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow  mr-10">
       {children}
     </div>
   );
