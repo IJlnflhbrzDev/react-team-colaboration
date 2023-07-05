@@ -23,18 +23,15 @@ const Header = () => {
   );
 };
 
-const Body = () => {
+const Body = ({children, title}) => {
   return (
     <div className="px-5 pb-5">
       <a href="#">
         <h5 className="text-xl font-semibold tracking-tight text-white mb-2 mt-2">
-          Sepatu Baru
+                    {title}
         </h5>
         <p className="text-s text-white">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-          asperiores, unde ad illum aliquam perspiciatis exercitationem natus,
-          provident amet animi corporis ex. Assumenda, commodi consequatur amet
-          aliquam porro cupiditate animi?
+    {children}
         </p>
       </a>
     </div>
