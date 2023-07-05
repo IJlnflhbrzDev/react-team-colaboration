@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
+import Button from "../components/Elements/Button/button";
 import CardProduct from "../components/Fragments/CardProduct";
 
 const products = [
@@ -38,7 +39,22 @@ const products = [
   },
 ];
 const Product = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+    window.location.href = "/login";
+  }
   return (
+    <>
+    <div className="p-5 bg-blue-600 text-white flex justify-between items-center">      <h3>
+        
+      Halo {" "}
+    {
+      localStorage.getItem('email')
+    }
+    </h3>
+    <Button title="Logout" className="bg-black hover:bg-gray-800" onClick={handleLogout} />
+    </div>
     <div className="flex justify-center py-5">
       {products.map((product) => {
         return (
@@ -52,6 +68,7 @@ const Product = () => {
         );
       })}
     </div>
+      </>
   );
 };
 export default Product;
