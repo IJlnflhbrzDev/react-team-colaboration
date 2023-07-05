@@ -11,42 +11,36 @@ const CardProduct = ({ children }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ image }) => {
   return (
     <a href="#">
-      <img
-        className="p-8 rounded-t-lg"
-        src="https://images.unsplash.com/photo-1579298245158-33e8f568f7d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1190&q=80"
-        alt="image-card"
-      />
+      <img className="p-8 rounded-t-lg h-72 object-cover w-full" src={image} alt="image-card" />
     </a>
   );
 };
 
-const Body = ({children, title}) => {
+const Body = ({ children, title }) => {
   return (
     <div className="px-5 pb-5">
       <a href="#">
         <h5 className="text-xl font-semibold tracking-tight text-white mb-2 mt-2">
-                    {title}
+          {title}
         </h5>
-        <p className="text-s text-white">
-    {children}
-        </p>
+        <p className="text-s text-white">{children}</p>
       </a>
     </div>
   );
 };
-const Footer = () => {
+const Footer = ({ price }) => {
   return (
     <div className="flex px-5 pb-5 items-center justify-between ">
-      <span className="text-xl font-bold text-white">Rp. 1.000.000</span>
+      <span className="text-xl font-bold text-white">{price}</span>
       <Button title="Add To Cart" />
     </div>
   );
 };
 
-CardProduct.Header = Header ;
+CardProduct.Header = Header;
 CardProduct.Body = Body;
 CardProduct.Footer = Footer;
 export default CardProduct;
