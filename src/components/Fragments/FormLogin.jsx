@@ -10,6 +10,11 @@ export const FormLogin = () => {
     console.log("Email : " + e.target.email.value);
     // Mengambil value password
     console.log("Password : " + e.target.password.value);
+    // Memasukan data email ke localstorage
+    localStorage.setItem('email', e.target.email.value);
+    // Memasukan data password ke localstorage
+    localStorage.setItem('password', e.target.password.value);
+    window.location.href = '/products';
   };
   return (
     <form onSubmit={handleLogin}>
