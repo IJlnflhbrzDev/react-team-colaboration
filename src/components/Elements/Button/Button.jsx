@@ -4,7 +4,7 @@ const Button = (props) => {
   return (
     <button
       type={type}
-      onClick={() => onClick()}
+      onClick={onClick}
       className={`${className} text-white font-bold py-2 px-4 border border-blue-700 rounded`}
     >
       {title}

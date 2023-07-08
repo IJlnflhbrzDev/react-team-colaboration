@@ -3,6 +3,9 @@
 
 import Button from "../Elements/Button/button";
 
+const setNumberFormat = (number) => {
+  return number.toLocaleString('id-ID', {styles : 'currency', currency: 'IDR'});
+}
 const CardProduct = ({ children }) => {
   return (
     <div className="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow  mr-10">
@@ -31,11 +34,11 @@ const Body = ({ children, title }) => {
     </div>
   );
 };
-const Footer = ({ price }) => {
+const Footer = ({ id, price, handleAddToCart }) => {
   return (
     <div className="flex px-5 pb-5 items-center justify-between ">
-      <span className="text-xl font-bold text-white">{price}</span>
-      <Button title="Add To Cart" />
+      <span className="text-xl font-bold text-white">Rp.{" "}{setNumberFormat(price)}</span>
+      <Button title="Add To Cart" onClick={() => handleAddToCart(id)} />
     </div>
   );
 };
