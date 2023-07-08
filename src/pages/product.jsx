@@ -48,6 +48,19 @@ const Product = () => {
   ]);
 
   const handleAddToCart = (id) => {
+    if (cart.find((item) => item.id === id)) {
+      return setCart(
+        cart.map((item) => item.id === id ? {...item, qty: item.qty + 1,} : item) 
+      )
+    }else{
+      setCart(
+        ...cart,
+        {
+          id: id,
+          qty: 1,
+        }
+      )
+    }
     setCart([
       ...cart,
       {
