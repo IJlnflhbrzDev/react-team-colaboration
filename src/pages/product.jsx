@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
+import { json } from "react-router-dom";
 import Button from "../components/Elements/Button/button";
 import CardProduct from "../components/Fragments/CardProduct";
 import { useEffect, useState } from "react";
@@ -43,17 +44,21 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
-    setCart([{ id: 1, qty: 1 }]);
+    setCart(JSON.parse(localStorage.getItem('cart')) || []);
   }, []);
 
   // implement component did update untuk menjumlahkan semua total price
   useEffect(() => {
+   if (cart.length > 0) {
     const sum = cart.reduce((acc, item) => {
       const product = products.find((product) => product.id === item.id);
       return acc + product.price * item.qty;
     }, 0);
 
     setTotalPrice(sum);
+    // menyimpan data yang sudah ada atau yang baru dibuat ke localstorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+   }
   }, [cart]);
 
   const handleAddToCart = (id) => {
