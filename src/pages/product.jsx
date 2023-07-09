@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import Button from "../components/Elements/Button/button";
 import CardProduct from "../components/Fragments/CardProduct";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const products = [
   {
@@ -40,26 +40,24 @@ const products = [
   },
 ];
 const Product = () => {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      qty: 1,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+   setCart([{id: 1, qty: 1}])  
+  }, []);
 
   const handleAddToCart = (id) => {
     if (cart.find((item) => item.id === id)) {
       return setCart(
-        cart.map((item) => item.id === id ? {...item, qty: item.qty + 1,} : item) 
-      )
-    }else{
-      setCart(
-        ...cart,
-        {
-          id: id,
-          qty: 1,
-        }
-      )
+        cart.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item
+        )
+      );
+    } else {
+      setCart(...cart, {
+        id: id,
+        qty: 1,
+      });
     }
     setCart([
       ...cart,
@@ -124,8 +122,20 @@ const Product = () => {
                   <tr key={item.id}>
                     <td>{product.title}</td>
                     <td>{item.qty}</td>
-                    <td>Rp. {product.price.toLocaleString('id-ID', {styles : 'currency', currency:'IDR'} )}</td>
-                    <td>Rp. {(item.qty * product.price).toLocaleString('id-ID', {styles : 'currency', currency:'IDR'})}</td>
+                    <td>
+                      Rp.{" "}
+                      {product.price.toLocaleString("id-ID", {
+                        styles: "currency",
+                        currency: "IDR",
+                      })}
+                    </td>
+                    <td>
+                      Rp.{" "}
+                      {(item.qty * product.price).toLocaleString("id-ID", {
+                        styles: "currency",
+                        currency: "IDR",
+                      })}
+                    </td>
                   </tr>
                 );
               })}
