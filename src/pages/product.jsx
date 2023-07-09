@@ -41,10 +41,20 @@ const products = [
 ];
 const Product = () => {
   const [cart, setCart] = useState([]);
-
+  const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
-   setCart([{id: 1, qty: 1}])  
+    setCart([{ id: 1, qty: 1 }]);
   }, []);
+
+  // implement component did update untuk menjumlahkan semua total price
+  useEffect(() => {
+    const sum = cart.reduce((acc, item) => {
+      const product = products.find((product) => product.id === item.id);
+      return acc + product.price * item.qty;
+    }, 0);
+
+    setTotalPrice(sum);
+  }, [cart]);
 
   const handleAddToCart = (id) => {
     if (cart.find((item) => item.id === id)) {
@@ -110,7 +120,6 @@ const Product = () => {
                 <th>Title</th>
                 <th>Qty</th>
                 <th>Price</th>
-                <th>Total Price</th>
               </tr>
             </thead>
             <tbody>
@@ -129,18 +138,24 @@ const Product = () => {
                         currency: "IDR",
                       })}
                     </td>
-                    <td>
-                      Rp.{" "}
-                      {(item.qty * product.price).toLocaleString("id-ID", {
-                        styles: "currency",
-                        currency: "IDR",
-                      })}
-                    </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
+          <div className="mt-5">
+            <hr />
+            <h4 className="ml-5 font-bold">
+              Total Harga Barang :{" "}
+              <span >
+                Rp {" "}
+                {totalPrice.toLocaleString("id-ID", {
+                  styles: "currency",
+                  currency: "IDR",
+                })}
+              </span>
+            </h4>
+          </div>
         </div>
       </div>
     </>
